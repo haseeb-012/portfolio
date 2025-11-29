@@ -36,7 +36,7 @@ function Projects() {
   ];
   return (
     <div className="py-10">
-      <p className="text-secondary">
+      <p className="text-secondary max-w-lg pt-4  text-sm md:text-sm">
         I Love Building web App and product that can impact million lives
       </p>
       <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
@@ -57,7 +57,7 @@ function Projects() {
               delay: index * 0.1,
               ease: "easeInOut",
             }}
-            className="group relative mb-4  "// fixed h-82 if needed
+            className="group relative mb-4" // fixed h-82 if needed
             key={index}
           >
             <Link href={project.href}>
@@ -66,7 +66,7 @@ function Projects() {
                 width={300}
                 height={300}
                 alt={project.title}
-                className="w-full h-68 rounded-xl object-cover transition duration-200 group-hover:scale-[1.02]"
+                className="h-68 w-full rounded-xl object-cover transition duration-200 group-hover:scale-[1.02]"
               />
               <h2 className="z-20 mt-2 font-medium tracking-tight text-neutral-400 dark:text-neutral-500">
                 {project.title}

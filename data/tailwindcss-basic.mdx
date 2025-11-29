@@ -1,0 +1,76 @@
+---
+title: "Modern Tailwind CSS Guide (v4)"
+description: "A clean and practical introduction to Tailwind CSS v4 with modern utility patterns."
+date: "29 Nov 2025"
+image: ""
+---
+
+# Modern Tailwind CSS Guide (v4)
+
+Tailwind CSS v4 brings a refined developer experience with smarter defaults, faster builds, and a more expressive utility system. If you're starting fresh or upgrading, this short guide gives you the essential updates you need.
+
+---
+
+## Utility-First Styling
+
+Tailwind’s core idea remains simple: apply small, meaningful classes directly in your markup.
+
+```html
+<div class="bg-blue-500 text-white p-4 rounded-xl shadow">
+  Welcome to Tailwind v4 🎉
+</div>
+```
+---  
+
+
+##  Enhanced Responsive System
+
+Tailwind's breakpoints are unchanged, but responsiveness is smoother thanks to the new build engine.
+
+<p class="text-base md:text-lg lg:text-xl">
+  Resize to see responsive text!
+</p>
+
+Breakpoints: sm, md, lg, xl, 2xl.
+
+---  
+
+## Modern Layout Utilities
+
+Flexbox
+
+<div class="flex items-center justify-between p-4 bg-gray-100 rounded-xl">
+  <span>Item A</span>
+  <span>Item B</span>
+  <span>Item C</span>
+</div>
+
+Grid
+
+<div class="grid grid-cols-3 gap-4">
+  <div class="bg-blue-300 p-3 rounded">1</div>
+  <div class="bg-blue-400 p-3 rounded">2</div>
+  <div class="bg-blue-500 p-3 rounded text-white">3</div>
+</div>
+
+---  
+
+
+## Interaction States
+
+<button class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+  Hover Me
+</button>
+
+Tailwind now auto-manages CSS layers, so hover/focus styles stay lightweight.
+
+---  
+## Recommended Plugins
+```js
+plugins: [
+  require("@tailwindcss/forms"),
+  require("@tailwindcss/typography"),
+];
+```
+
+
