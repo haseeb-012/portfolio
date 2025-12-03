@@ -1,7 +1,9 @@
 import Container from "@/components/Container";
 import { Metadata } from "next";
 import { getBlogs } from "@/utils/mdx";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
+import Heading from "@/components/heading";
+import SubHeading from "@/components/subheading";
 
 export const metadata: Metadata = {
   title: "All blogs - Haseeb Sajjad",
@@ -14,13 +16,9 @@ export default async function Blog() {
   };
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-[200vh] px-10 md:pt-20 md:pb-10">
-        <h1 className="text-primary text-2xl font-bold tracking-tight md:text-4xl">
-          All blogs
-        </h1>
-        <p className="text-secondary max-w-lg text-sm md:text-sm">
-          All my general wisdom and thoughts
-        </p>
+      <Container className="min-h-screen p-4 md:pt-20 md:pb-10">
+        <Heading>All blogs</Heading>
+        <SubHeading>All my general wisdom and thoughts</SubHeading>
         <div className="flex flex-col gap-4 py-10">
           {allBlog.map((blog, index) => (
             <Link key={index} href={`/blog/${blog.slug}`}>
@@ -29,12 +27,13 @@ export default async function Blog() {
                   {blog.title}
                 </h2>
                 <p className="text-secondary text-sm md:text-sm">
-                  { new Date(blog.date || "").toLocaleDateString('en-us', {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "short",
-                  day:"numeric"
-                })}</p>
+                  {new Date(blog.date || "").toLocaleDateString("en-us", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
               </div>
               <p className="text-secondary max-w-lg pt-2 text-sm md:text-sm">
                 {truncate(blog.description || "", 150)}

@@ -2,45 +2,17 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { Project ,projects as defaultProject} from "@/constant/project";
+import SectionHeading from "./section-heading";
 
-function Projects() {
-  const Projects = [
-    {
-      title: "Internet Infrastructure",
-      src: "/1.jpg",
-      href: "#internet",
-      description:
-        "Built scalable network infrastructure supporting millions of concurrent connections.",
-    },
-    {
-      title: "E‑Commerce Platform",
-      src: "/2.jpg",
-      href: "#ecommerce",
-      description:
-        "Developed full-stack e-commerce solution with payment integration and inventory management.",
-    },
-    {
-      title: "Social Network",
-      src: "/3.jpg",
-      href: "#social",
-      description:
-        "Created real-time social platform with messaging, notifications, and user engagement features.",
-    },
-    {
-      title: "Analytics Dashboard",
-      src: "/4.jpg",
-      href: "#analytics",
-      description:
-        "Built interactive analytics dashboard with data visualization and real-time metrics tracking.",
-    },
-  ];
+function Projects({ projects = defaultProject }: { projects?: Project[] }) {
   return (
     <div className="py-10">
-      <p className="text-secondary max-w-lg pt-4  text-sm md:text-sm">
-        I Love Building web App and product that can impact million lives
-      </p>
-      <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
-        {Projects.map((project, index) => (
+      <SectionHeading>
+        I love Building things
+      </SectionHeading>
+      <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
+        {projects.map((project, index) => (
           <motion.div
             initial={{
               opacity: 0,

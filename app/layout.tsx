@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar/index";
-import { ViewTransitions } from "next-view-transitions";
+// import { ViewTransitions } from "next-view-transitions";
+import Footer from '../components/navbar/footer';
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,15 +24,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-    <html lang="en">
+    // <ViewTransitions>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} bg-neutral-100 antialiased dark:bg-neutral-700`}
       >
-        <Navbar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <Toaster position="top-center" />
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
-      </html>
-      </ViewTransitions>
+    </html>
+    // </ViewTransitions>
   );
 }

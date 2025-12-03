@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib/utils";
 
 function Container({
   className,
@@ -11,7 +11,7 @@ function Container({
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-4xl bg-white dark:bg-black dark:text-primary",
+        "mx-auto w-full max-w-4xl bg-white dark:bg-black dark:text-primary-foreground",
         className,
       )}
     >

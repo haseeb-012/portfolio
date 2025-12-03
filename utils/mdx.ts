@@ -17,7 +17,7 @@ export async function getBlogContent(slug: string) {
     if (!signleBlog) {
       return null;
     }
-    const { content, frontmatter } = await compileMDX<{ title: string }>({
+    const { content, frontmatter } = await compileMDX<FrontMatter>({
       source: signleBlog,
       options: { parseFrontmatter: true },
     });

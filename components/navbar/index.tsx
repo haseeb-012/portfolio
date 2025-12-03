@@ -1,18 +1,27 @@
 "use client";
+
 import React, { useState } from "react";
 import Container from "../Container";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionTemplate, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { ModeToggle } from "../darkmode";
+import { Menu, X } from "lucide-react";
 
 function Navbar() {
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const y = useTransform(scrollY, [ 0, 100 ], [0,10]);
-  const width = useTransform(scrollY, [ 0, 100 ], [ "100%", "50%" ]);
-  const opacity = useTransform(scrollY, [ 0, 100 ], [ 1, 0.8 ]);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Desktop-only animation
+  const y = useTransform(scrollY, [0, 100], [0, 10]);
+  const width = useTransform(scrollY, [0, 100], ["59%", "50%"]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 20) {
@@ -21,68 +30,98 @@ function Navbar() {
       setScrolled(false);
     }
   });
+
   const navitems = [
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Blog",
-      href: "/blog",
-    },
-    {
-      title: "Project",
-      href: "/project",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
+    { title: "About", href: "/about" },
+    { title: "Blog", href: "/blog" },
+    { title: "Project", href: "/projects" },
+    { title: "Contact", href: "/contact" },
   ];
+
   return (
     <Container>
+      {/* Main Navbar */}
       <motion.nav
         style={{
+          // Desktop only
           boxShadow: scrolled ? "var(--shadow-aceternity)" : "none",
-          width,
+          width:
+            typeof window !== "undefined" && window.innerWidth >= 768
+              ? width
+              : "100%",
           y,
         }}
         transition={{
           duration: 0.3,
           ease: "linear",
         }}
-        className="item-cennter fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl justify-between rounded-full bg-white px-3 py-2 dark:bg-neutral-900"
+        className="dark:text-primary-foreground /* Mobile override */ md:fixed inset-x-0 top-0 z-50 mx-auto flex w-full max-w-5xl items-center justify-between rounded-none bg-white px-3 py-2 backdrop-blur-xl md:w-auto md:rounded-full md:py-2 dark:bg-neutral-900"
       >
-        <Link href={"/"}>
+        {/* Logo */}
+        <Link href="/">
           <Image
             className="h-10 w-10 rounded-full"
-            src={"/avatar.jpg"}
+            src="/avatar.jpg"
             height="100"
-            width={"100"}
+            width="100"
             alt="Avatar"
           />
         </Link>
 
-        <div className="flex items-center">
-          {navitems.map((item, index) => (
-            <Link
-              className="relative px-2 py-1 text-sm"
-              href={item.href}
-              key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {hoveredIndex === index && (
-                <motion.span
-                  layoutId="hovered-span"
-                  className="rounde-full absolute inset-0 h-full w-full bg-neutral-100 dark:bg-neutral-900"
-                ></motion.span>
-              )}
-              {<span className="relative z-10">{item.title}</span>}
-            </Link>
-          ))}
+        {/* Desktop + Mobile Toggle */}
+        <div className="flex items-center gap-2">
+          {/* Desktop Nav */}
+          <div className="hidden items-center md:flex">
+            <ModeToggle />
+
+            {navitems.map((item, index) => (
+              <Link
+                className="relative px-2 py-1 text-sm"
+                href={item.href}
+                key={index}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {hoveredIndex === index && (
+                  <motion.span
+                    layoutId="hovered-span"
+                    className="absolute inset-0 h-full w-full rounded-full bg-neutral-100 dark:bg-neutral-800"
+                  ></motion.span>
+                )}
+                <span className="relative z-10">{item.title}</span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="rounded-md p-2 md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </motion.nav>
+
+      {/* Mobile Drawer Menu */}
+      {mobileOpen && (
+        <div className="top-14 right-0 left-0 z-40 w-full bg-white p-4 shadow-md md:hidden dark:bg-neutral-900">
+          <div className="flex flex-col gap-3">
+            <ModeToggle />
+
+            {navitems.map((item, index) => (
+              <Link
+                href={item.href}
+                key={index}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </Container>
   );
 }
