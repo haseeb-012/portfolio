@@ -4,7 +4,7 @@ import Container from "../Container";
 
 function Footer() {
   return (
-    <Container className="flex justify-between p-3 py-1 border-t  border-neutral-100">
+    <Container className="flex justify-between p-3 py-1 border-t  dark:border-neutral-800 border-neutral-100">
      
         <p className="text-xs text-secondary">Built with love by Haseeb Sajjad</p>
         <div className="flex items-center justify-center gap-4">

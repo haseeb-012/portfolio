@@ -7,7 +7,7 @@ import SectionHeading from "./section-heading";
 
 function Projects({ projects = defaultProject }: { projects?: Project[] }) {
   return (
-    <div className="py-10">
+    <div className="border-y border-neutral-100 dark:shadow-section-dark my-4 shadow-section-inset px-4 dark:border-neutral-800">
       <SectionHeading>
         I love Building things
       </SectionHeading>
@@ -38,7 +38,7 @@ function Projects({ projects = defaultProject }: { projects?: Project[] }) {
                 width={300}
                 height={300}
                 alt={project.title}
-                className="h-68 w-full rounded-xl object-cover transition duration-200 group-hover:scale-[1.02]"
+                className="h-50 w-full rounded-xl object-cover transition duration-200 group-hover:scale-[1.02]"
               />
               <h2 className="z-20 mt-2 font-medium tracking-tight text-neutral-400 dark:text-neutral-500">
                 {project.title}

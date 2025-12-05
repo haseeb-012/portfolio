@@ -55,7 +55,7 @@ function Navbar() {
           duration: 0.3,
           ease: "linear",
         }}
-        className="dark:text-primary-foreground /* Mobile override */ md:fixed inset-x-0 top-0 z-50 mx-auto flex w-full max-w-5xl items-center justify-between rounded-none bg-white px-3 py-2 backdrop-blur-xl md:w-auto md:rounded-full md:py-2 dark:bg-neutral-900"
+        className="dark:text-primary-foreground /* Mobile override */ inset-x-0 top-0 z-50 mx-auto flex w-full max-w-5xl items-center justify-between rounded-none bg-white px-3 py-2 backdrop-blur-xl md:fixed md:w-auto md:rounded-full md:py-2 dark:bg-neutral-950"
       >
         {/* Logo */}
         <Link href="/">
@@ -94,21 +94,22 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button
-            className="rounded-md p-2 md:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="flex items-center">
+            {mobileOpen && <ModeToggle />}
+            <button
+              className="rounded-md p-2 md:hidden"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
       {/* Mobile Drawer Menu */}
       {mobileOpen && (
-        <div className="top-14 right-0 left-0 z-40 w-full bg-white p-4 shadow-md md:hidden dark:bg-neutral-900">
+        <div className="top-14 right-0 left-0 z-40 w-full bg-white p-4 shadow-md md:hidden dark:bg-neutral-950">
           <div className="flex flex-col gap-3">
-            <ModeToggle />
-
             {navitems.map((item, index) => (
               <Link
                 href={item.href}

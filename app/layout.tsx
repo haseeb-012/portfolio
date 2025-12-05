@@ -27,7 +27,7 @@ export default function RootLayout({
     // <ViewTransitions>
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} bg-neutral-100 antialiased dark:bg-neutral-700`}
+        className={`${inter.className} bg-neutral-100 antialiased dark:bg-neutral-950`}
       >
         <ThemeProvider
           attribute="class"
@@ -39,6 +39,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        
       </body>
     </html>
     // </ViewTransitions>
