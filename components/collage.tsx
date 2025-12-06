@@ -50,7 +50,7 @@ export function Collage() {
     },
   ];
   return (
-    <DraggableCardContainer className="relative flex min-h-120 w-full items-center justify-center overflow-clip"> 
+    <DraggableCardContainer className="relative px-4 flex min-h-120 w-full items-center justify-center overflow-clip"> 
       {items.map((item,index) => (
         <DraggableCardBody key={index} className={item.className}>
           <img

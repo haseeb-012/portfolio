@@ -84,7 +84,7 @@ function TimeLine() {
     },
   ];
   return (
-    <div ref={ref} className="py-10">
+    <div ref={ref} className="px-4 py-10">
       {data.map((year, idx) => (
         <div key={idx} className="mb-4" content="px-4 py-1">
           <motion.h2
@@ -102,11 +102,11 @@ function TimeLine() {
               ease: "easeInOut",
               delay: 0.1 * idx,
             }}
-            className="shadow-aceternity mb-2 w-fit rounded-md px-2 py-0.5 font-bold text-black"
+            className="shadow-aceternity dark:text-primary-foreground mb-2 w-fit rounded-md px-2 py-0.5 font-bold text-black"
           >
             {year.title}
           </motion.h2>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pt-4">
             {year.content.map((item, index) => (
               <div className="pl-4" key={index}>
                 <Step isInView={isInView} index={index}>
@@ -118,6 +118,7 @@ function TimeLine() {
                     }}
                     animate={{
                       opacity: isInView ? 1 : 0,
+                      filter: "blur(0px)",
                       y: isInView ? 0 : -10,
                     }}
                     transition={{
@@ -125,7 +126,7 @@ function TimeLine() {
                       ease: "easeInOut",
                       delay: 0.2 * index,
                     }}
-                    className="text-neutral-600"
+                    className="text-neutral-600 dark:text-neutral-300"
                   >
                     {item.title}
                   </motion.h3>
@@ -139,6 +140,7 @@ function TimeLine() {
                     }}
                     animate={{
                       opacity: isInView ? 1 : 0,
+                      filter: "blur(0px)",
                       y: isInView ? 0 : -10,
                     }}
                     transition={{
@@ -146,7 +148,7 @@ function TimeLine() {
                       ease: "easeInOut",
                       delay: 0.3 * index,
                     }}
-                    className="pt-1 pl-6 text-sm text-neutral-400"
+                    className="pt-1 pl-6 text-sm text-neutral-400 dark:text-neutral-500"
                   >
                     {item.description}
                   </motion.p>
@@ -173,8 +175,14 @@ const Step = ({
 }) => {
   return (
     <motion.div
+      initial={{
+        opacity: 0,
+        filter: "blur(10px)",
+        y: 10,
+      }}
       animate={{
         opacity: isInView ? 1 : 0,
+        filter: "blur(0px)",
         y: isInView ? 0 : -10,
       }}
       transition={{

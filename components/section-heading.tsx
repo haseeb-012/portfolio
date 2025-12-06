@@ -6,10 +6,12 @@ function SectionHeading({
   as: Tag = "h2",
   children,
   delay = 0.2,
+  className,
 }: {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   children: React.ReactNode;
-  delay?: number;
+    delay?: number;
+  className?: string;
 }) {
   return (
     <motion.div
@@ -30,7 +32,7 @@ function SectionHeading({
         delay: delay,
       }}
     >
-      <Tag className="text-secondary max-w-lg pt-4 text-sm md:text-sm">
+      <Tag className={`text-secondary  max-w-lg pt-4 text-sm md:text-sm  ${className}`}>
         {children}
       </Tag>
     </motion.div>

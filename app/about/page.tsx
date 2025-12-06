@@ -5,6 +5,7 @@ import { Collage } from "../../components/collage";
 import TimeLine from "@/components/TimeLine";
 import Heading from "@/components/heading";
 import SubHeading from "@/components/subheading";
+import SectionHeading from "@/components/section-heading";
 
 export default function AboutPage() {
   return (
@@ -15,14 +16,14 @@ export default function AboutPage() {
           A full‑stack developer builds both the user interface (frontend) and
           the server/database (backend).
         </SubHeading>
-        <p className="text-secondary max-w-lg pt-4 text-sm md:text-sm">
+        <p className="text-secondary max-w-lg pt-4 px-4 text-sm md:text-sm">
           I love to travel and expolre new places.I'm a big fan of nature and
           adventaure. I'm also a big fan of technology and innovation.
         </p>
         <Collage />
-        <p className="text-secondary max-w-lg pt-4 text-sm md:text-sm">
+        <SectionHeading className="px-6">
           Here's a timeline of my life achievements.
-        </p>
+        </SectionHeading>
         <TimeLine />
       </Container>
     </div>
